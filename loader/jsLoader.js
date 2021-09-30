@@ -1,7 +1,5 @@
 module.exports = function (src) {
     if (src) {
-        console.log('src', src)
-        console.log(typeof src)
         if (src.indexOf('Data Point') !== -1) {
             src = `
                 function dataPoint() {

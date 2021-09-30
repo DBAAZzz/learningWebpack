@@ -42,7 +42,7 @@ traverse(ast, {
             if (path.findParent(path => path.isJSXElement())) {
                 path.replaceWith(types.arrayExpression([newNode, path.node]))
                 path.skip();
-            } else {
+            } else { 
                 path.insertBefore(newNode);
             }
         }
