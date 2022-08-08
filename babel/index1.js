@@ -20,8 +20,9 @@ const sourceCode = `
     }
 `;
 
+// 将代码转化成 AST 
 const ast = parse.parse(sourceCode, {
-    sourceType: 'unambiguous',
+    sourceType: 'unambiguous', // 根据内容是否有 import 和 export 来自动设置 module 还是 script
     plugins: ['jsx']
 })
 
@@ -32,7 +33,7 @@ traverse(ast, {
             && path.node.callee.object.name === 'console'
             && ['log', 'info', 'error', 'debug'].includes(path.node.callee.property.name)
         ) {
-            console.log(path.node.loc.start)
+            // console.log(path.node.loc.start)
             const { line, column } = path.node.loc.start
             path.node.arguments.unshift(types.stringLiteral(`filename:(${line}, ${column})`))
         }
